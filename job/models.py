@@ -13,7 +13,7 @@ def image_upload(instance,filename):
     imagename,extension=filename.split(".")
     return "jobs/%s.%s"%(instance.title,extension)
     
-class job(models.Model):
+class Job(models.Model):
     JOP_TYPE=(
         ('Full Time','Full Time'),
         ('Part Time','Part Time'),
@@ -33,7 +33,7 @@ class job(models.Model):
 
     def save(self,*args,**kwargs):
         self.slug=slugify( self.title)
-        super(job,self).save(*args,**kwargs)
+        super(Job,self).save(*args,**kwargs)
     def __str__(self) -> str:
         return self.title 
 
@@ -42,6 +42,21 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return self.name
+class Apply(models.Model):
+    job=models.ForeignKey(Job,related_name='apply_job',on_delete=models.CASCADE)
+    name=models.CharField(max_length=50)
+    email=models.EmailField(max_length=50)
+    website=models.URLField()
+    cv=models.FileField(upload_to='apply/')
+    cover_letter=models.TextField(max_length=200)
+    created_at=models.DateTimeField(auto_now=True)
+
+    
+    def __str__(self) -> str:
+        return self.name
+
+    
+
 
 
 
