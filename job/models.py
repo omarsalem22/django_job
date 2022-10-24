@@ -1,11 +1,13 @@
 
+
 from django.utils.text import slugify
 from distutils.command.upload import upload
 from msilib.schema import Class
-import re
+
 from sre_constants import CATEGORY
 from unicodedata import category, name
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -18,6 +20,7 @@ class Job(models.Model):
         ('Full Time','Full Time'),
         ('Part Time','Part Time'),
     )
+    owner=models.ForeignKey(User,related_name='job_owner',on_delete=models.CASCADE)
     title=models.CharField(max_length=100)
     image= models.ImageField(upload_to=image_upload,null=True)
     job_type=models.CharField(max_length=20 ,choices=JOP_TYPE )
