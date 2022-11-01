@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'job.apps.JobConfig',
     'home.apps.HomeConfig',
     'blog.apps.BlogConfig',
-   
+    'conntact.apps.ConntactConfig'   ,
+    'django_filters',
+    'rest_framework',
+  
 
 
     
@@ -147,3 +150,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT= os.path.join(BASE_DIR,"media")
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='omarmohamed25112001@gmail.com'
+EMAIL_HOST_PASSWORD='fbrmgavmnmjjucsf'
+EMAIL_USE_TLS=True
+EMAIL_PORT='587'
+
+
