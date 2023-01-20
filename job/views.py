@@ -49,3 +49,5 @@ def add_job(request):
         form=Job_form()
     context={'form':form}   
     return render(request,'job/add_job.html',context)
+def omar(request):
+    pass
